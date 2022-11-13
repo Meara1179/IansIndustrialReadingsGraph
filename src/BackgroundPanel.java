@@ -12,7 +12,7 @@ public class BackgroundPanel extends JPanel
     {
         try
         {
-            File f = new File("Binah_Stare.png");
+            File f = new File("Ian_Logo.png");
             background = ImageIO.read(f);
         }
         catch (Exception e)

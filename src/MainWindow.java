@@ -33,6 +33,7 @@ public class MainWindow extends JFrame implements ActionListener, MouseListener
     IssuesValues issueObstruction = new IssuesValues(
             "Obstruction", "Obs", 1, 2, 3);
 
+    // Component initializer.
     JLabel lblIanIndustrialTitle;
     JLabel lblLocation;
     JLabel lblDate;
@@ -61,6 +62,7 @@ public class MainWindow extends JFrame implements ActionListener, MouseListener
     JLabel dataGridBox;
     Color backgroundColour = new Color(54,57,63);
 
+    // MainWindow constructor.
     public MainWindow()
     {
         reportLocation = file.GetReportLocation();
@@ -71,11 +73,12 @@ public class MainWindow extends JFrame implements ActionListener, MouseListener
 
         Font mainFont = new Font("helvetica", Font.PLAIN, 20);
 
-        setTitle("자바는 좀 별로다");
+        setTitle("Ian's Industrial Installation");
         setSize(1280, 760);
         setLocation(100, 100);
         setResizable(false);
 
+        // JPanel creation.
         JPanel pnlMasterPanel = new JPanel(new FlowLayout(FlowLayout.CENTER, 0, 0));
         JPanel pnlTitlePanel = new JPanel();
         JPanel pnlTopPanel = new JPanel(myLayout);
@@ -83,22 +86,26 @@ public class MainWindow extends JFrame implements ActionListener, MouseListener
         pnlDataSubPanel = new JPanel(myLayout);
         JPanel pnlBottomPanel = new JPanel(myLayout);
 
+        // JPanel size assignment.
         pnlTitlePanel.setPreferredSize(new Dimension(1280, 40));
         pnlTopPanel.setPreferredSize(new Dimension(1280, 60));
         pnlDataGridPanel.setPreferredSize(new Dimension(1280, 520));
         pnlBottomPanel.setPreferredSize(new Dimension(1280, 100));
 
+        // JPanel background assignment.
         pnlMasterPanel.setBackground(backgroundColour);
         this.setBackground(backgroundColour);
         pnlTitlePanel.setBackground(new Color(189,160,40));
         pnlTopPanel.setBackground(backgroundColour);
         pnlDataGridPanel.setBackground(Color.GREEN);
+        pnlDataSubPanel.setBackground(backgroundColour);
         pnlBottomPanel.setBackground(backgroundColour);
 
         pnlDataSubPanel.setOpaque(false);
 
         pnlDataGridPanel.setBorder(BorderFactory.createLineBorder(Color.BLACK, 3));
 
+        // JPanel assignment.
         pnlMasterPanel.add(pnlTitlePanel);
         pnlMasterPanel.add(pnlTopPanel);
         pnlMasterPanel.add(pnlDataGridPanel);
@@ -236,26 +243,27 @@ public class MainWindow extends JFrame implements ActionListener, MouseListener
         myLayout.putConstraint(SpringLayout.NORTH,rbtExportFileRpt,0, SpringLayout.SOUTH, rbtExportFileDat);
         pnlBottomPanel.add(rbtExportFileRpt);
 
+        // Radio Button Group assignment.
         bgExportFile.add(rbtExportFileRaf);
         bgExportFile.add(rbtExportFileDat);
         bgExportFile.add(rbtExportFileRpt);
 
         pnlDataGridPanel.add(pnlDataSubPanel);
 
+        // DataSubPanel position assignment.
         myLayout.putConstraint(SpringLayout.HORIZONTAL_CENTER,pnlDataSubPanel,640, SpringLayout.WEST, pnlDataGridPanel);
         myLayout.putConstraint(SpringLayout.VERTICAL_CENTER,pnlDataSubPanel,260, SpringLayout.NORTH, pnlDataGridPanel);
 
 
-
+        // Adds the master panel to the frame.
         this.add(pnlMasterPanel);
+        // Sets the frame to be visable.
         this.setVisible(true);
-
-
-
-
+        // Sets the default behaviour for when the Windows close button is pressed.
         this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
     }
 
+    // Handles the creation of the individual boxes that make up the data grid.
     private void CreateDataGridBox(int row, int column, int value, JPanel panel, int currentCount, MouseListener listener)
     {
         int acceptableLevel = 0;
@@ -325,6 +333,7 @@ public class MainWindow extends JFrame implements ActionListener, MouseListener
         panel.add(dataGridBoxes.get(currentCount));
     }
 
+    // Inputs the data from the Readings list and passes it into the CreateDataGridBox method.
     public void GenerateDataGrid()
     {
         int boxCount = 0;
@@ -360,6 +369,7 @@ public class MainWindow extends JFrame implements ActionListener, MouseListener
         }
     }
 
+    // Handles clearing away an existing data grid.
     public void RemoveDataGrid()
     {
             for (int i = 0; i < dataGridBoxes.size(); i++)
@@ -367,12 +377,14 @@ public class MainWindow extends JFrame implements ActionListener, MouseListener
                 pnlDataSubPanel.removeAll();
                 pnlDataGridPanel.removeAll();
             }
+            pnlDataSubPanel.setOpaque(true);
             pnlDataGridPanel.revalidate();
             pnlDataGridPanel.repaint();
             dataGridBoxes.clear();
             AddDataSubGrid();
     }
 
+    // Adds the DataSubPanel to prepare it for accepting the data grid.
     public void AddDataSubGrid()
     {
         pnlDataGridPanel.add(pnlDataSubPanel);

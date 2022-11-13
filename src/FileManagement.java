@@ -9,6 +9,7 @@ public class FileManagement {
     String reportTime;
     String reportDate;
 
+    // Reads data from the supplied file and populates the readingsGraph 2d ArrayList with it.
     public void ReadReadingsValue(String filename)
     {
         try
@@ -62,6 +63,7 @@ public class FileManagement {
 
     }
 
+    // Handles exporting the data as a Raf file.
     public void ExportRaf(String fileName, String location, String date, String time)
     {
         int seekPos = 150;
@@ -91,6 +93,7 @@ public class FileManagement {
         }
     }
 
+    // Handles exporting the data as a Dat file.
     public void ExportDat(String fileName)
     {
         try
@@ -115,6 +118,7 @@ public class FileManagement {
         }
     }
 
+    // Handles exporting the data as a Rpt file.
     public void ExportRpt(String fileName, String[][] array)
     {
         try
@@ -160,31 +164,35 @@ public class FileManagement {
         }
     }
 
+    // Returns the size of the parent 2d ArrayList.
     public int Get2dParentSize()
     {
         return readingsGraph.size();
     }
 
+    // Returns the size of the child 2d ArrayList.
     public int Get2dChildSize(int i)
     {
         return readingsGraph.get(i).size();
     }
 
+    // Returns the value of the supplied index of the 2d ArrayList.
     public int Get2dArrayValue(int i1, int i2)
     {
         return readingsGraph.get(i1).get(i2);
     }
 
+    // Returns the reportLocation from the file.
     public String GetReportLocation()
     {
         return reportLocation;
     }
-
+    // Returns the reportTime from the file.
     public String GetReportTime()
     {
         return reportTime;
     }
-
+    // Returns the reportDate from the file.
     public String GetReportDate()
     {
         return reportDate;
